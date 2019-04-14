@@ -19,9 +19,9 @@ public class VerificationUtil {
             return false;
         Long currenttime=System.currentTimeMillis();
         Long clienttime=Long.parseLong(map.get("timestamp"));
-        if(currenttime-clienttime>timeout){
+        /*if(currenttime-clienttime>timeout){
             return false;
-        }
+        }*/
         StringBuilder signResult=new StringBuilder();
         List<String> key=new ArrayList<>();
         for(String cur:map.keySet()){
