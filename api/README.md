@@ -35,17 +35,26 @@
 -|-|-|-|
 username|是|String|用户名
 password|是|String|密码
+timestamp|是|String|13位当前时间戳
+sign|是|String|sign签名
+- 备注：sign算法为所有的参数字典序排序，然后key和value连接起来，最后加signstring，对这个字符串取md5值  
+如：上传参数为`username=asadsad&timestamp=1555226180000&sign=f556929c24857816bb52ea5ded41dfb5`  
+则对字符串：`timestamp1555226180000usernameasadsadqwfhasio4568/asd12iids`  
+取md5运算  
+即：`sign=md5("timestamp1555226180000usernameasadsadqwfhasio4568/asd12iids")`
+其中`qwfhasio4568/asd12iids`是前后端约定的signstring
 #### 返回格式
 ``` json
     {
         "code":1000,
-        "msg":"sssss"
+        "msg":"登录成功"
     } 
 ```
 #### 返回参数说明
 参数名|必选|类型|说明
 -|-|-|-|
 msg|是|String|错误说明
+code|是|int|[参加全局code](#全局code)
 
 ## 数据字典
 
