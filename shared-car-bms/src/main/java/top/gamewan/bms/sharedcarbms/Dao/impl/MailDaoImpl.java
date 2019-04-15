@@ -10,7 +10,7 @@ public class MailDaoImpl implements MailDao {
     private JdbcTemplate jdbcTemplate;
     @Override
     public boolean setCodeToDB(String toAddress, String code) {
-        String sql="update tmpmailcode set code=? sendtime=now() where mailaddress=?";
+        String sql="update tmpmailcode set code=?,sendtime=now() where mailaddress=?";
         int issend=-1;
         try{
             issend=jdbcTemplate.update(sql,new Object[]{code,toAddress});

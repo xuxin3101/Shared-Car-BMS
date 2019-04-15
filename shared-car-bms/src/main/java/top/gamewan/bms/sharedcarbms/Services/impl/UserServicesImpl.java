@@ -3,12 +3,15 @@ package top.gamewan.bms.sharedcarbms.Services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import top.gamewan.bms.sharedcarbms.Bean.UserInfo;
+import top.gamewan.bms.sharedcarbms.Dao.MailDao;
 import top.gamewan.bms.sharedcarbms.Dao.UserDao;
 import top.gamewan.bms.sharedcarbms.Services.UserServices;
 @Component
 public class UserServicesImpl implements UserServices {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private MailDao mailDao;
     @Override
     public UserInfo userLogin(String u, String p) {
         UserInfo userInfo=userDao.getUserInfo(u,p);
@@ -19,5 +22,13 @@ public class UserServicesImpl implements UserServices {
         }
         else
             return null;
+    }
+
+    @Override
+    public int userRegister(String u, String p, String mail, String code) {
+        if(!mailDao.checkCode(mail,code))
+            return 2;
+        //邮箱验证成功
+        return userDao.insertUser(u,p,mail);
     }
 }

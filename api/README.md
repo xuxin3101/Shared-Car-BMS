@@ -23,6 +23,9 @@
 1000|成功
 1001|sign验证失败
 1002|token验证失败
+1003|有参数为空
+1004|待定
+1005|未知失败原因
 
 ## 全局sign算法
 - 所有的请求在服务器端统一验证sign
@@ -78,10 +81,23 @@ code|是|int|[参加全局code](#全局code)
 username|是|String|用户名
 password|是|String|密码
 email|是|String|邮箱
-emailcode|是|String|邮箱验证码
-timestamp|是|String|时间戳
+code|是|String|邮箱验证码
+timestamp|是|String|13位当前时间戳
 sign|是|string|[sign签名](#全局sign算法)
 - 注意：注册前要先发送邮箱验证码[发送注册邮箱验证码](#注册邮箱验证码)
+#### 返回格式
+``` json
+{
+    msg: "注册成功", 
+    code: 1000
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
 
 ## 邮箱相关
 ### 注册邮箱验证码
@@ -94,8 +110,8 @@ sign|是|string|[sign签名](#全局sign算法)
 #### 参数：
 参数名|必选|类型|说明
 -|-|-|-|
-邮箱|是|String|邮箱
-timestamp|是|String|时间戳
+toAddress|是|String|邮箱
+timestamp|是|String|13位当前时间戳
 sign|是|String|[sign签名](#全局sign算法)
 #### 返回格式
 ``` json

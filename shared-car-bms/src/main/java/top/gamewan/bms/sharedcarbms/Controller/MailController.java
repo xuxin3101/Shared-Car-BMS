@@ -22,15 +22,15 @@ public class MailController {
     private MailServices mailServices;
     @RequestMapping(method = RequestMethod.POST,value = "sendregistermail")
     public ReturnMsg sendRegisterMail(HttpServletRequest request){
-       /* Map<String,String> map=VerificationUtil.requestToMap(request);
+        Map<String,String> map=VerificationUtil.requestToMap(request);
         if(!verificationUtil.checkSign(map)){
             return new ReturnMsg("sign验证失败",1001);
-        }*/
+        }
         String toAddress=request.getParameter("toAddress");
         if(mailServices.sendRegisterMail(toAddress))
             return new ReturnMsg("发送成功",1000);
         else
-            return new ReturnMsg("发送失败",1004);
+            return new ReturnMsg("发送失败",1005);
 
     }
 

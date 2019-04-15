@@ -35,4 +35,34 @@ public class UserController {
        else
            return new LoginReturnMsg("账号或密码错误",1002,null);
     }
+    @RequestMapping(method = RequestMethod.POST,value = "register")
+    public ReturnMsg register(HttpServletRequest request){
+        Map<String,String> map=VerificationUtil.requestToMap(request);
+        if(!verificationUtil.checkSign(map)){
+            return new ReturnMsg("sign验证失败",1001);
+        }
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
+        String mail=request.getParameter("email");
+        String code=request.getParameter("code");
+        if(username==null||username.equals(""))
+            return new ReturnMsg("用户名不能为空",1003);
+        else if(password==null || password.equals(""))
+            return new ReturnMsg("密码不能为空",1003);
+        else if(mail==null || mail.equals(""))
+            return new ReturnMsg("邮箱不能为空",1003);
+        else if(code ==null || code.equals(""))
+            return new ReturnMsg("验证码不能为空",1003);
+        int result=userServices.userRegister(username,password,mail,code);
+        if(result==1){
+            return  new ReturnMsg("注册成功",1000);
+        }else if(result==2){
+            return  new ReturnMsg("验证码错误",1005);
+        }else if(result==3){
+            return new ReturnMsg("用户名或者邮箱重复",1005);
+        }
+        else{
+            return new ReturnMsg("注册失败",1005);
+        }
+    }
 }
