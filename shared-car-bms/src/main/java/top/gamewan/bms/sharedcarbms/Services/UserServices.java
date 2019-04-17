@@ -2,6 +2,8 @@ package top.gamewan.bms.sharedcarbms.Services;
 
 import top.gamewan.bms.sharedcarbms.Bean.UserInfo;
 
+import java.util.List;
+
 public interface UserServices {
     UserInfo userLogin(String u, String p);
 
@@ -14,5 +16,7 @@ public interface UserServices {
      * @return 1为成功 2位验证码验证错误,3代表往user表插入失败,4代表往login插入失败
      */
     int userRegister(String u,String p,String mail,String code);
+    boolean userTokenCheck(String username,String token);
+    List<UserInfo> getUsers(int page,int count);
 
 }

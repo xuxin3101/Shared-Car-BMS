@@ -3,6 +3,8 @@ package top.gamewan.bms.sharedcarbms.Dao;
 import org.springframework.transaction.annotation.Transactional;
 import top.gamewan.bms.sharedcarbms.Bean.UserInfo;
 
+import java.util.List;
+
 public interface UserDao {
    UserInfo getUserInfo(String username,String password);
    String setToken(String username);
@@ -16,4 +18,6 @@ public interface UserDao {
     */
    @Transactional
    int insertUser(String u,String p,String email);
+   String getToken(String username);
+   List<UserInfo> getUsers(int page, int count);
 }

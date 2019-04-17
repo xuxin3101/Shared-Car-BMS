@@ -8,6 +8,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import top.gamewan.bms.sharedcarbms.Bean.UserInfo;
 import top.gamewan.bms.sharedcarbms.Dao.UserDao;
+
+import java.util.List;
+
 @Component
 public class UserDaoImpl implements UserDao
 {
@@ -63,4 +66,31 @@ public class UserDaoImpl implements UserDao
         }
         return 1;
     }
+
+    @Override
+    public String getToken(String username) {
+        String sql="select token from login where username=?";
+        try{
+            return jdbcTemplate.queryForObject(sql,new Object[]{username},String.class);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<UserInfo> getUsers(int page, int count) {
+        int start=(page-1)*count;
+       String sql="select * from user limit ?,?";
+        List<UserInfo> userInfos=null;
+       try{
+           userInfos=
+           jdbcTemplate.query(sql,new Object[]{start,count},new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+       }catch(Exception e){
+            e.printStackTrace();
+       }
+       return userInfos;
+
+    }
+
 }

@@ -6,6 +6,9 @@ import top.gamewan.bms.sharedcarbms.Bean.UserInfo;
 import top.gamewan.bms.sharedcarbms.Dao.MailDao;
 import top.gamewan.bms.sharedcarbms.Dao.UserDao;
 import top.gamewan.bms.sharedcarbms.Services.UserServices;
+
+import java.util.List;
+
 @Component
 public class UserServicesImpl implements UserServices {
     @Autowired
@@ -30,5 +33,20 @@ public class UserServicesImpl implements UserServices {
             return 2;
         //邮箱验证成功
         return userDao.insertUser(u,p,mail);
+    }
+
+    @Override
+    public boolean userTokenCheck(String username, String token) {
+        String realtoken=userDao.getToken(username);
+        if(realtoken!=null && realtoken.equals(token))
+            return true;
+        else
+            return false;
+
+    }
+
+    @Override
+    public List<UserInfo> getUsers(int page, int count) {
+        return userDao.getUsers(page,count);
     }
 }

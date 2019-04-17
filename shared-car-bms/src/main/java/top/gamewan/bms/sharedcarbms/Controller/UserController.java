@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import top.gamewan.bms.sharedcarbms.Bean.LoginReturnMsg;
 import top.gamewan.bms.sharedcarbms.Bean.ReturnMsg;
 import top.gamewan.bms.sharedcarbms.Bean.UserInfo;
+import top.gamewan.bms.sharedcarbms.Bean.UsersReturnMsg;
 import top.gamewan.bms.sharedcarbms.Services.UserServices;
 import top.gamewan.bms.sharedcarbms.utils.VerificationUtil;
 
@@ -64,5 +65,21 @@ public class UserController {
         else{
             return new ReturnMsg("注册失败",1005);
         }
+    }
+    @RequestMapping(method = RequestMethod.POST,value = "getusers")
+    public UsersReturnMsg getusers(HttpServletRequest request){
+        Map<String,String> map=VerificationUtil.requestToMap(request);
+        if(!verificationUtil.checkSign(map)){
+            return new UsersReturnMsg("sign验证失败",1001,null);
+        }
+        String username=request.getParameter("username");
+        String token=request.getParameter("token");
+        if(!userServices.userTokenCheck(username,token)){
+            return new UsersReturnMsg("token验证失败",1002,null);
+        }
+        int page=Integer.parseInt(request.getParameter("page"));
+        int count=Integer.parseInt(request.getParameter("count"));
+        return new UsersReturnMsg("获取成功",1000, userServices.getUsers(page,count));
+
     }
 }

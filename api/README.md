@@ -7,7 +7,8 @@
 3. [全局sign算法](#全局sign算法)
 4. [用户相关](#用户相关)  
 4.1 [登录](#登录)  
-4.2 [注册](#注册)
+4.2 [注册](#注册)  
+4.3 [获取用户列表](#获取用户列表)
 5. [邮箱相关](#邮箱相关)
 6. [数据字典](#数据字典)  
 6.1 [User](#User)
@@ -59,7 +60,11 @@ sign|是|String|[sign签名](#全局sign算法)
 ``` json
     {
         "code":1000,
-        "msg":"登录成功"
+        "msg":"登录成功",
+        "userinfo":{
+            "username":"用户名",
+            "token":"asdasdasd"
+        }
     } 
 ```
 #### 返回参数说明
@@ -67,6 +72,8 @@ sign|是|String|[sign签名](#全局sign算法)
 -|-|-|-|
 msg|是|String|错误说明
 code|是|int|[参加全局code](#全局code)
+userinfo|是|Object|返回用户信息
+- userinfo中的token在登录后的所有操作中均有用到，注意保存
 
 ### 注册
 #### 简要描述
@@ -98,6 +105,40 @@ sign|是|string|[sign签名](#全局sign算法)
 -|-|-|-|
 msg|是|String|说明
 code|是|int|[参加全局code](#全局code)
+### 获取用户列表
+#### 简要描述
+- 获取用户列表接口
+#### 请求url：
+- `/api/getusers`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|登录后返回的token
+page|是|int|返回第几页数据
+count|是|int|返回几条数据
+timestamp|是|String|13位当前时间戳
+sign|是|String|[sign签名](#全局sign算法)
+- 注意：page和count密切相关，如page=2&count=5，则返回数据库的6-10
+#### 返回参数说明
+``` json
+{
+    msg: "查询成功", 
+    code: 1000,
+    userinfos:{
+        //用户相关数据
+    }
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
+userinfos|否|array|返回的用户列表
 
 ## 邮箱相关
 ### 注册邮箱验证码
@@ -135,5 +176,5 @@ code|是|int|[参加全局code](#全局code)
 id|int(10)|否||自增|是
 username|varchar(25)|否||用户名|否
 password|varchar(32)|否||密码|否
-
+email|varchar(25)|否||邮箱|否
 - 备注：无
