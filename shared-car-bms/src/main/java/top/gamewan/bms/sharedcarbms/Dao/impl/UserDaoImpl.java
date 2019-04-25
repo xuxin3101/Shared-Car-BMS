@@ -93,4 +93,17 @@ public class UserDaoImpl implements UserDao
 
     }
 
+    @Override
+    public int getUserCount() {
+        String sql="select count(*) from user";
+        int result=0;
+        try{
+            result=jdbcTemplate.queryForObject(sql,Integer.class);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+
 }
