@@ -12,8 +12,12 @@
 5. [邮箱相关](#邮箱相关)
 6. [管理系统信息相关](#管理系统信息相关)  
 6.1 [获取车辆和人数](#获取车辆和人数)
-7. [数据字典](#数据字典)  
-7.1 [User](#User)
+7. [网点相关](#网点相关)  
+7.1 [查网点](#查网点)  
+7.2 [增加一个网点](#增加一个网点)  
+7.3 [删除一个网点](#删除一个网点)
+8. [数据字典](#数据字典)  
+8.1 [User](#User)
 
 ## 序言
 
@@ -202,6 +206,105 @@ sign|是|string|[sign签名](#全局sign算法)
 msg|是|String|说明
 code|是|int|[参加全局code](#全局code)
 
+## 网点相关
+### 查网点
+#### 简要描述
+- 获取指定数量的网点信息
+#### 请求url：
+- `/api/getbranch`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+#### 返回格式
+``` json
+{
+    msg: "注册成功", 
+    code: 1000,
+    [
+        //具体信息
+    ]
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
+
+### 增加一个网点
+#### 简要描述
+- 增加一个网点
+#### 请求url：
+- `/api/insertbranch`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+name|是|String|网点名称
+type|是|String|网点类型(合作/非合作)
+place|是|String|网点地点
+count|是|int|网点内车数量
+flow|是|int|网点日流量
+#### 返回格式
+``` json
+{
+    msg: "添加成功", 
+    code: 1000,
+    [
+        //具体信息
+    ]
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
+
+### 删除一个网点
+#### 简要描述
+- 删除一个网点
+#### 请求url：
+- `/api/deletebranch`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+id|是|String|网点id
+#### 返回格式
+``` json
+{
+    msg: "删除成功", 
+    code: 1000,
+    [
+        //具体信息
+    ]
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
 ## 数据字典
 
 ### User
