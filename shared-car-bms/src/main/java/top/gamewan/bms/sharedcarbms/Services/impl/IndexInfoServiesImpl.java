@@ -17,6 +17,8 @@ public class IndexInfoServiesImpl implements IndexInfoServices {
         IndexInfo indexInfo=new IndexInfo();
         indexInfo.setCarCount(carDao.getCarCount());
         indexInfo.setUserCount(userDao.getUserCount());
+        indexInfo.setTodayUserCarCount(12315);
+        indexInfo.setTodaywelcomeCount(5461124);
         return indexInfo;
     }
 }
