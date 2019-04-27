@@ -221,6 +221,8 @@ username|是|String|用户名
 token|是|String|token
 timestamp|是|String|13位当前时间戳
 sign|是|string|[sign签名](#全局sign算法)
+page|是|int|第几页
+count|是|int|获取数量
 #### 返回格式
 ``` json
 {
