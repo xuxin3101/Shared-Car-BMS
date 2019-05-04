@@ -20,4 +20,5 @@ public interface UserDao {
    int insertUser(String u,String p,String email);
    String getToken(String username);
    List<UserInfo> getUsers(int page, int count);
+   int getUserCount();
 }
