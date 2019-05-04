@@ -4,7 +4,7 @@ public class BranchInfo {
     private int id;
     private String name;
     private String type;
-    private String placplace;
+    private String place;
     private int count;
     private int flow;
 
@@ -32,12 +32,12 @@ public class BranchInfo {
         this.type = type;
     }
 
-    public String getPlacplace() {
-        return placplace;
+    public String getPlace() {
+        return place;
     }
 
-    public void setPlacplace(String placplace) {
-        this.placplace = placplace;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public int getCount() {

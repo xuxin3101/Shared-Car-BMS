@@ -71,15 +71,38 @@ public class BranchController {
     public ListBranchInfoReturnMsg getBranches(HttpServletRequest request) {
         int resultcode = verificationUtil.checkSignAndToken(request);
         if (resultcode == 1001) {
-            return new ListBranchInfoReturnMsg("sign验证失败", 1001, null);
+            return new ListBranchInfoReturnMsg("sign验证失败", 1001, null,0);
         } else if (resultcode == 1002) {
-            return new ListBranchInfoReturnMsg("token验证失败", 1002, null);
+            return new ListBranchInfoReturnMsg("token验证失败", 1002, null,0);
         } else {
             String page = request.getParameter("page");
             String count = request.getParameter("count");
             List<BranchInfo> branchInfos =
                     branchServices.getBranchs(Integer.parseInt(page), Integer.parseInt(count));
-            return new ListBranchInfoReturnMsg("获取成功", 1000, branchInfos);
+            return new ListBranchInfoReturnMsg("获取成功", 1000, branchInfos,branchServices.getBranchCount());
+        }
+    }
+    @RequestMapping(value = "editbranch",method = RequestMethod.POST)
+    public ReturnMsg editBranch(HttpServletRequest request){
+        int resultcode=verificationUtil.checkSignAndToken(request);
+        if(resultcode==1001){
+            return new ReturnMsg("sign验证失败", 1001 );
+        }else if(resultcode==1002){
+            return new ReturnMsg("token验证失败", 1002);
+        }else{
+            int id=Integer.parseInt(request.getParameter("id"));
+            String name=request.getParameter("name");
+            String type=request.getParameter("type");
+            String place=request.getParameter("place");
+            int count=Integer.parseInt(request.getParameter("count"));
+            int flow=Integer.parseInt(request.getParameter("flow"));
+            boolean success=
+            branchServices.editBranch(id,name,type,place,count,flow);
+            if(success){
+                return new ReturnMsg("修改成功",1000);
+            }else{
+                return new ReturnMsg("修改失败，参数非法",1005);
+            }
         }
     }
 

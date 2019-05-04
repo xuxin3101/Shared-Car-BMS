@@ -21,7 +21,7 @@ public class BranchServicesImpl implements BranchServices {
         BranchInfo branchInfo=new BranchInfo();
         branchInfo.setName(name);
         branchInfo.setType(type);
-        branchInfo.setPlacplace(place);
+        branchInfo.setPlace(place);
         branchInfo.setCount(count);
         branchInfo.setFlow(flow);
         return branchDao.insertBranchs(branchInfo);
@@ -31,4 +31,20 @@ public class BranchServicesImpl implements BranchServices {
     public boolean deleteBranch(int id) {
        return branchDao.deleteBranch(id);
     }
+
+    @Override
+    public int getBranchCount() {
+       return branchDao.getBranchCount();
+    }
+
+    @Override
+    public boolean editBranch(int id, String name, String type, String place, int count, int flow) {
+       if(id<=0 ||name==null ||name.equals("") ||type==null||type.equals("")||place==null||place.equals("")
+       ||count<0||flow<0)
+           return false;
+
+       return  branchDao.editBranch(id, name, type, place, count, flow);
+    }
+
+
 }

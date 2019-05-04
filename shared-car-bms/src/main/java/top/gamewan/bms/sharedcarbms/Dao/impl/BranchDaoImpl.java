@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import top.gamewan.bms.sharedcarbms.Bean.BranchInfo;
-import top.gamewan.bms.sharedcarbms.Bean.UserInfo;
 import top.gamewan.bms.sharedcarbms.Dao.BranchDao;
 
 
@@ -31,7 +30,7 @@ public class BranchDaoImpl implements BranchDao {
     public boolean insertBranchs(BranchInfo branchInfo) {
        String sql="insert into branch values(null,?,?,?,?,?)";
        int reslut=
-       jdbcTemplate.update(sql,new Object[]{branchInfo.getName(),branchInfo.getType(),branchInfo.getPlacplace()
+       jdbcTemplate.update(sql,new Object[]{branchInfo.getName(),branchInfo.getType(),branchInfo.getPlace()
        ,branchInfo.getCount(),branchInfo.getFlow()});
        return reslut==1?true:false;
     }
@@ -42,5 +41,19 @@ public class BranchDaoImpl implements BranchDao {
         int result=
                 jdbcTemplate.update(sql,new Object[]{id});
         return result==1?true:false;
+    }
+
+    @Override
+    public int getBranchCount() {
+        String sql="select count(*) c from branch";
+        Integer count=
+        jdbcTemplate.queryForObject(sql,Integer.class);
+        return count;
+    }
+
+    @Override
+    public boolean editBranch(int id, String name, String type, String place, int count, int flow) {
+        String sql="update branch set name=?,type=?,place=?,count=?,flow=? where id=?";
+        return jdbcTemplate.update(sql,new Object[]{name,type,place,count,flow,id})==1?true:false;
     }
 }
