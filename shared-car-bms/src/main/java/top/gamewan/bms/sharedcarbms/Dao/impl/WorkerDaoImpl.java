@@ -41,7 +41,7 @@ public class WorkerDaoImpl implements WorkerDao {
 
     @Override
     public int getWorkerCount() {
-        String sql="select count(*) c from works";
+        String sql="select count(*) c from worker";
         Integer count=
                 jdbcTemplate.queryForObject(sql,Integer.class);
         return count;
