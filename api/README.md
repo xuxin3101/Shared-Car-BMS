@@ -21,8 +21,10 @@
 8.1 [查工作人员](#查工作人员)  
 8.2 [增加一个工作人员](#增加一个工作人员)  
 8.3 [删除一个工作人员](#删除一个工作人员)  
-9. [数据字典](#数据字典)  
-9.1 [User](#User)
+9. [汽车相关](#汽车相关)  
+9.1 [查汽车](#查汽车)  
+9.2 [增加一个汽车](#增加一个汽车)  
+9.3 [删除一个汽车](#删除一个汽车)
 
 ## 序言
 
@@ -445,14 +447,107 @@ id|是|String|员工id
 msg|是|String|说明
 code|是|int|[参加全局code](#全局code)
 
-## 数据字典
+## 汽车相关
+### 查汽车
+#### 简要描述
+- 获取指定数量的汽车信息
+#### 请求url：
+- `/api/getcars`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+page|是|int|第几页
+count|是|int|获取数量
+type|是|int|类型[1/0]，1代表租赁了的，2代表未租赁
 
-### User
+#### 返回格式
+``` json
+{
+    "msg": "获取成功", 
+    "code": 1000,
+    "carinfos":
+    [
+        //具体信息
+    ],
+    "carcount":10
+}
 
-字段|类型|空|默认|注释|主码
--|-|-|-|-|-|
-id|int(10)|否||自增|是
-username|varchar(25)|否||用户名|否
-password|varchar(32)|否||密码|否
-email|varchar(25)|否||邮箱|否
-- 备注：无
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
+
+### 增加一个汽车
+#### 简要描述
+- 增加一个汽车
+#### 请求url：
+- `/api/insertcar`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+numberplate|是|String|车牌号
+model|是|String|车型
+color|是|String|颜色
+status|是|String|空闲/租赁/保养中/加油中/xxxx...
+endurancemail|是|int|可续航里程
+statustime|是|int|状态时长
+parkplace|否|String|停车位置
+parkmoney|否|int|停车费
+lease|否|int|1为租赁状态，2位未租赁状态
+
+#### 返回格式
+``` json
+{
+    msg: "添加成功", 
+    code: 1000
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
+
+### 删除一个汽车
+#### 简要描述
+- 删除一个汽车
+#### 请求url：
+- `/api/deletecar`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+id|是|String|车id
+#### 返回格式
+``` json
+{
+    msg: "删除成功", 
+    code: 1000,
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)

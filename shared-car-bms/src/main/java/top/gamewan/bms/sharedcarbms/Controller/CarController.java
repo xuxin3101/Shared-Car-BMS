@@ -45,7 +45,7 @@ public class CarController {
         }
 
     }
-    @RequestMapping(value = "insertCar",method = RequestMethod.POST)
+    @RequestMapping(value = "insertcar",method = RequestMethod.POST)
     public ReturnMsg inserCar(HttpServletRequest request){
         int resultcode=
                 verificationUtil.checkSignAndToken(request);
