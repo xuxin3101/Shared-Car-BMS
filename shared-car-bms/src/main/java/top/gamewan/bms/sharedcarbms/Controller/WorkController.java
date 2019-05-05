@@ -35,4 +35,42 @@ public class WorkController {
                     getWorkers(page,count),workServices.getWorkersCount());
         }
     }
+    @RequestMapping(value = "insertwork",method = RequestMethod.POST)
+    public  ReturnMsg insertWork(HttpServletRequest request){
+        int resultcode=
+                verificationUtil.checkSignAndToken(request);
+        if (resultcode == 1001) {
+            return new ReturnMsg("sign验证失败", 1001);
+        } else if (resultcode == 1002) {
+            return new ReturnMsg("token验证失败", 1002);
+        } else {
+            String name=request.getParameter("name");
+            String idcard=request.getParameter("idcard");
+            String phone=request.getParameter("phone");
+            String status=request.getParameter("status");
+            String permission=request.getParameter("permission");
+            if(workServices.insertWorkers(name,idcard,phone,status,permission))
+                return new ReturnMsg("插入成功",1000);
+            else{
+                return new ReturnMsg("插入失败",1005);
+            }
+
+        }
+    }
+    @RequestMapping(value = "deletework",method = RequestMethod.POST)
+    public ReturnMsg deleteWork(HttpServletRequest request){
+        int resultcode=
+                verificationUtil.checkSignAndToken(request);
+        if (resultcode == 1001) {
+            return new ReturnMsg("sign验证失败", 1001);
+        } else if (resultcode == 1002) {
+            return new ReturnMsg("token验证失败", 1002);
+        } else {
+            if(  workServices.deleteWorker(Integer.parseInt(request.getParameter("id"))))
+                return new ReturnMsg("删除成功",1000);
+            else
+                return new ReturnMsg("删除失败",1005);
+        }
+    }
+
 }
