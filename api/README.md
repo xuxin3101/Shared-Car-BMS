@@ -16,9 +16,13 @@
 7.1 [查网点](#查网点)  
 7.2 [增加一个网点](#增加一个网点)  
 7.3 [删除一个网点](#删除一个网点)  
-7.4 [修改一个网点](#修改一个网点)
-8. [数据字典](#数据字典)  
-8.1 [User](#User)
+7.4 [修改一个网点](#修改一个网点)  
+8. [工作人员相关](#工作人员相关)
+8.1 [查工作人员](#查工作人员)
+8.2 [增加一个工作人员](#增加一个工作人员)  
+8.3 [删除一个工作人员](#删除一个工作人员)
+9. [数据字典](#数据字典)  
+9.1 [User](#User)
 
 ## 序言
 
@@ -308,6 +312,7 @@ id|是|String|网点id
 -|-|-|-|
 msg|是|String|说明
 code|是|int|[参加全局code](#全局code)
+
 ### 修改一个网点
 #### 简要描述
 - 修改一个网点
@@ -333,6 +338,104 @@ id|是|int|要修改的网点id
 {
     msg: "修改成功", 
     code: 1000
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
+
+## 工作人员相关
+### 查工作人员
+#### 简要描述
+- 获取指定数量的工作人员信息
+#### 请求url：
+- `/api/getworkers`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+page|是|int|第几页
+count|是|int|获取数量
+#### 返回格式
+``` json
+{
+    "msg": "获取成功", 
+    "code": 1000,
+    "workersInfos":
+    [
+        //具体信息
+    ],
+    "workcount":10
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
+
+### 增加一个工作人员
+#### 简要描述
+- 增加一个工作人员
+#### 请求url：
+- `/api/insertworkers`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+name|是|String|员工名字
+idcard|否|String|身份证号
+phone|否|String|手机号
+status|否|String|空闲/加油工单中/保养工单中/...
+permission|是|String|城市主管/普通运维
+#### 返回格式
+``` json
+{
+    msg: "添加成功", 
+    code: 1000
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
+
+### 删除一个工作人员
+#### 简要描述
+- 删除一个工作人员
+#### 请求url：
+- `/api/deleteworker`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+id|是|String|员工id
+#### 返回格式
+``` json
+{
+    msg: "删除成功", 
+    code: 1000,
 }
 
 ```
