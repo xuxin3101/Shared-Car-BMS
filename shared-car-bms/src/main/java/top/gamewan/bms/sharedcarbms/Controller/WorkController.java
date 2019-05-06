@@ -35,7 +35,7 @@ public class WorkController {
                     getWorkers(page,count),workServices.getWorkersCount());
         }
     }
-    @RequestMapping(value = "insertwork",method = RequestMethod.POST)
+    @RequestMapping(value = "insertworker",method = RequestMethod.POST)
     public  ReturnMsg insertWork(HttpServletRequest request){
         int resultcode=
                 verificationUtil.checkSignAndToken(request);
@@ -57,7 +57,7 @@ public class WorkController {
 
         }
     }
-    @RequestMapping(value = "deletework",method = RequestMethod.POST)
+    @RequestMapping(value = "deleteworker",method = RequestMethod.POST)
     public ReturnMsg deleteWork(HttpServletRequest request){
         int resultcode=
                 verificationUtil.checkSignAndToken(request);

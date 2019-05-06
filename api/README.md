@@ -389,7 +389,7 @@ code|是|int|[参加全局code](#全局code)
 #### 简要描述
 - 增加一个工作人员
 #### 请求url：
-- `/api/insertworkers`
+- `/api/insertworker`
 #### 请求方式
 - POST
 #### 参数：
