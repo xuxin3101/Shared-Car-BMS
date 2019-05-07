@@ -18,7 +18,7 @@ public class WorkerServicesImpl implements WorkServices {
     }
     @Override
     public boolean insertWorkers(String name, String idcard, String phone, String status, String permission) {
-        if(name==null||name.equals("")||permission!=null ||permission.equals(""))
+        if(name==null||name.equals("")||permission==null ||permission.equals(""))
             return false;
         WorkerInfo workerInfo=new WorkerInfo();
         workerInfo.setIdcard(idcard);

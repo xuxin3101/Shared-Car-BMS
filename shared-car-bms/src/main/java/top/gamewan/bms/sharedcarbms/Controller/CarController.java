@@ -59,7 +59,7 @@ public class CarController {
             String color=request.getParameter("color");
             String status=request.getParameter("status");
             int endurancemail=Integer.parseInt(request.getParameter("endurancemail"));
-            int statustime=Integer.parseInt(request.getParameter("tatustime"));
+            int statustime=Integer.parseInt(request.getParameter("statustime"));
             String parkplace=request.getParameter("parkplace");
             int parkmoney=Integer.parseInt(request.getParameter("parkmoney"));
             int lease=Integer.parseInt(request.getParameter("lease"));
