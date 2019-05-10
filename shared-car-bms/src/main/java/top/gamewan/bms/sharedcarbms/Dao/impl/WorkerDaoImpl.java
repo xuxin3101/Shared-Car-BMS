@@ -32,7 +32,7 @@ public class WorkerDaoImpl implements WorkerDao {
         String sql="select * from worker limit ?,?";
         List<WorkerInfo> workerInfos=null;
         try{
-            jdbcTemplate.query(sql,new Object[]{start,count},new BeanPropertyRowMapper<WorkerInfo>(WorkerInfo.class));
+            workerInfos=jdbcTemplate.query(sql,new Object[]{start,count},new BeanPropertyRowMapper<WorkerInfo>(WorkerInfo.class));
         }catch (Exception e){
             e.printStackTrace();
         }

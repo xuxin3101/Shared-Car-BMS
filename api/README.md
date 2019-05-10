@@ -24,7 +24,11 @@
 9. [汽车相关](#汽车相关)  
 9.1 [查汽车](#查汽车)  
 9.2 [增加一个汽车](#增加一个汽车)  
-9.3 [删除一个汽车](#删除一个汽车)
+9.3 [删除一个汽车](#删除一个汽车)  
+10. [工单相关](#工单相关)  
+10.1 [查工单](#查工单)  
+10.2 [增加工单](#增加工单)  
+10.3 [删除工单](#删除工单)  
 
 ## 序言
 
@@ -538,6 +542,106 @@ token|是|String|token
 timestamp|是|String|13位当前时间戳
 sign|是|string|[sign签名](#全局sign算法)
 id|是|String|车id
+#### 返回格式
+``` json
+{
+    msg: "删除成功", 
+    code: 1000,
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
+
+## 工单
+### 查工单
+#### 简要描述
+- 获取指定数量的工单
+#### 请求url：
+- `/api/getworkorders`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+page|是|int|第几页
+count|是|int|获取数量
+type|是|int|类型自定义即可
+
+#### 返回格式
+``` json
+{
+    "msg": "获取成功", 
+    "code": 1000,
+    "workorderinfos":
+    [
+        //具体信息
+    ],
+    "workordercount":10
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
+
+### 增加工单
+#### 简要描述
+- 增加一个工单
+#### 请求url：
+- `/api/insertworkorder`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+carnumber|是|String|车牌号
+principal|是|String|委托人
+status|是|String|工单状态(待加油/已委托/已完成)
+type|是|String|工单类型，自定义即可
+
+#### 返回格式
+``` json
+{
+    msg: "添加成功", 
+    code: 1000
+}
+
+```
+#### 返回参数说明
+参数名|必选|类型|说明
+-|-|-|-|
+msg|是|String|说明
+code|是|int|[参加全局code](#全局code)
+
+### 删除工单
+#### 简要描述
+- 删除一个工单
+#### 请求url：
+- `/api/deleteworkorder`
+#### 请求方式
+- POST
+#### 参数：
+参数名|必选|类型|说明
+-|-|-|-|
+username|是|String|用户名
+token|是|String|token
+timestamp|是|String|13位当前时间戳
+sign|是|string|[sign签名](#全局sign算法)
+id|是|String|工单id
 #### 返回格式
 ``` json
 {

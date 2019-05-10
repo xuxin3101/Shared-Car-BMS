@@ -41,7 +41,7 @@ public class CarDaoImpl implements CarDao {
     @Override
     public List<CarInfo> getUnLeaseCars(int page, int count) {
         int start=(page-1)*count;
-        String sql="select * from car where lease=0 limit ?,?";
+        String sql="select * from car where lease=2 limit ?,?";
         List<CarInfo> carInfos=null;
         try {
             carInfos=jdbcTemplate.query(sql, new Object[]{start, count}, new BeanPropertyRowMapper<CarInfo>(CarInfo.class));
@@ -53,7 +53,7 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public boolean insertCar(CarInfo carInfo) {
-        String sql="inert into car values(null,?,?,?,?,?,?,?,?,?)";
+        String sql="insert into car values(null,?,?,?,?,?,?,?,?,?)";
         return
         jdbcTemplate.update(sql,new Object[]{carInfo.getNumberplate(),
         carInfo.getModel(),carInfo.getColor(),carInfo.getStatus(),
